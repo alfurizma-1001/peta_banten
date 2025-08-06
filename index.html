@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -20,7 +19,8 @@
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script>
-        var map = L.map('map', { scrollWheelZoom: false }).setView([-6.20, 106.49], 10);
+        var map = L.map('map').setView([-6.20, 106.49], 10);
+
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; OSM contributors'
         }).addTo(map);
@@ -77,9 +77,6 @@
         locations.forEach(loc => {
             L.marker([loc.lat, loc.lng]).addTo(map).bindPopup(`<strong>${loc.name}</strong>`);
         });
-
-        map.on('click', () => map.scrollWheelZoom.enable());
-        map.on('mouseout', () => map.scrollWheelZoom.disable());
     </script>
 </body>
 </html>
