@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peta Wilayah Banten</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        #map { height: 500px; width: 100%; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        h2, p { text-align: center; }
+    </style>
+</head>
+<body>
+
+    <h2 class="h4 text-primary text-center mb-4"><i class="fas fa-map-marked-alt"></i> PETA WILAYAH BANTEN</h2>
+    <p class="text-muted mb-3 text-center mb-5">Visualisasi lokasi layanan Posbakum di wilayah Banten.</p>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map', { scrollWheelZoom: false }).setView([-6.20, 106.49], 10);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OSM contributors'
+        }).addTo(map);
+
+        const locations = [
+            { name: "Kel. Sukamulya, Cikupa", lat: -6.20, lng: 106.49 },
+            { name: "Kel. Cikupa, Cikupa", lat: -6.2348, lng: 106.5285 },
+            { name: "Desa Pematang, Tigaraksa", lat: -6.30, lng: 106.45 },
+            { name: "Kel. Tigaraksa", lat: -6.306, lng: 106.4406 },
+            { name: "Kel. Margasari", lat: -6.305, lng: 106.44 },
+            { name: "Kel. Kaduagung", lat: -6.310, lng: 106.44 },
+            { name: "Kel. Pondok Ranji, Ciputat Timur", lat: -6.28838, lng: 106.74589 },
+            { name: "Kel. Serua, Ciputat", lat: -6.290, lng: 106.73 },
+            { name: "Kel. Lengkong Karya, Serpong Utara", lat: -6.270, lng: 106.654 },
+            { name: "Kel. Kelapa Dua, Setu", lat: -6.2436, lng: 106.6283 },
+            { name: "Kel. Cirendeu, Ciputat Timur", lat: -6.316, lng: 106.7885 },
+            { name: "Kel. Buaran, Serpong", lat: -6.1867, lng: 106.5917 },
+            { name: "Kel. Jurang Mangu Timur, Pondok Aren", lat: -6.265, lng: 106.72 },
+            { name: "Kel. Pisangan, Ciputat Timur", lat: -6.2884, lng: 106.7459 },
+            { name: "Kel. Gebang Raya, Periuk", lat: -6.2035, lng: 106.6161 },
+            { name: "Kel. Karawaci", lat: -6.1763, lng: 106.6224 },
+            { name: "Kel. Panunggangan Barat, Cibodas", lat: -6.1980, lng: 106.6306 },
+            { name: "Kel. Sukarasa, Tangerang", lat: -6.1803, lng: 106.6326 },
+            { name: "Kel. Bojong Jaya, Karawaci", lat: -6.1840, lng: 106.6213 },
+            { name: "Kel. Periuk", lat: -6.1843, lng: 106.5828 },
+            { name: "Kel. Cimone", lat: -6.1845, lng: 106.5950 },
+            { name: "Kel. Nusa Jaya", lat: -6.2160, lng: 106.5710 },
+            { name: "Kel. Gondrong, Cipondoh", lat: -6.2303, lng: 106.6843 },
+            { name: "Kel. Sumur Pacing", lat: -6.2339, lng: 106.7000 },
+            { name: "Kel. Larangan Selatan", lat: -6.2351, lng: 106.7385 },
+            { name: "Desa Sukasari, Kaduhejo", lat: -6.265, lng: 105.925 },
+            { name: "Kel. Pagerbatu, Majasari", lat: -6.4883, lng: 106.0154 },
+            { name: "Desa Bandung, Banjar", lat: -6.5957, lng: 106.1611 },
+            { name: "Desa Surianeun, Patia", lat: -6.2936, lng: 105.9444 },
+            { name: "Desa Mekarjaya, Panggarangan", lat: -6.4522, lng: 106.0836 },
+            { name: "Desa Pajagan, Sajira", lat: -6.2485, lng: 105.8974 },
+            { name: "Desa Cimangeunteung, Rangkasbitung", lat: -6.3405, lng: 106.2594 },
+            { name: "Kel. Rangkasbitung, Rangkasbitung Barat", lat: -6.3590, lng: 106.2522 },
+            { name: "Desa Gunungwangun, Cibeber", lat: -6.4553, lng: 106.1161 },
+            { name: "Desa Cibeber, Cibeber", lat: -6.0226, lng: 106.0336 },
+            { name: "Kel. Kebon Dalem, Purwakarta", lat: -6.0163, lng: 106.0592 },
+            { name: "Kel. Ramanuju", lat: -6.0101, lng: 106.0566 },
+            { name: "Kel. Kotasari, Grogol", lat: -6.0025, lng: 106.0527 },
+            { name: "Kel. Grogol", lat: -6.0182, lng: 106.0598 },
+            { name: "Kel. Kedaleman, Cibeber", lat: -6.0072, lng: 106.0712 },
+            { name: "Kel. Ciwandan", lat: -6.0284, lng: 106.0205 },
+            { name: "Kel. Taman Baru", lat: -6.0191, lng: 106.0347 },
+            { name: "Kel. Taman Sari, Pulomerak", lat: -6.0123, lng: 106.0349 },
+            { name: "Kel. Jombang Wetan, Jombang", lat: -6.0095, lng: 106.0435 },
+            { name: "Desa Labuan, Mancak", lat: -6.3767, lng: 105.8331 },
+            { name: "Kel. Drangong, Taktakan", lat: -6.0544, lng: 106.1420 }
+        ];
+
+        locations.forEach(loc => {
+            L.marker([loc.lat, loc.lng]).addTo(map).bindPopup(`<strong>${loc.name}</strong>`);
+        });
+
+        map.on('click', () => map.scrollWheelZoom.enable());
+        map.on('mouseout', () => map.scrollWheelZoom.disable());
+    </script>
+</body>
+</html>
